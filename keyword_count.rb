@@ -7,7 +7,7 @@ require 'json'
 ConfigEnv.path_to_config("#{__dir__}/config/config_env.rb")
 
 sqs = Aws::SQS::Client.new()
-q_url = sqs.get_queue_url(queue_name: 'searched_keyword').queue_url
+q_url = sqs.get_queue_url(queue_name: 'Kiwi_messenger').queue_url
 poller = Aws::SQS::QueuePoller.new(q_url)
 
 # set hash default function
@@ -38,11 +38,10 @@ end
 h = {'results' => countarray.to_json}
 print h
 
-
 # post to api server
 begin
   HTTParty.post(
-  'http://192.168.2.107:3000/api/v1/popularity',
+  'https://kiwi-api.herokuapp.com/api/v1/popularity',
   :header => {'Content-Type' => 'application/json'},
   :body => {'results' => countarray.to_json})
 rescue
