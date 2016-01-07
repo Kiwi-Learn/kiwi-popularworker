@@ -1,0 +1,5 @@
+iron.json
+config/config_env.rb
+bundle/
+.bundle/
+*.zip
